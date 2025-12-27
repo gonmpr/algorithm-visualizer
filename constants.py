@@ -1,0 +1,2 @@
+
+WIDTH, HEIGHT = 1366, 768
