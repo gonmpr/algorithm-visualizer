@@ -15,7 +15,11 @@ class Button:
                          pos_y + (self.button.height - self.text.get_height())/2) 
 
     def draw(self):
+        if self.mouse_on_button():
             pygame.draw.rect(self.window, Color.RED, self.button)
-            self.window.blit(self.text, self.text_pos) 
+        else:
+            pygame.draw.rect(self.window, Color.GREEN, self.button)
+        self.window.blit(self.text, self.text_pos) 
 
-
+    def mouse_on_button(self):
+        return self.button.collidepoint(pygame.mouse.get_pos())
