@@ -5,10 +5,17 @@ class Data:
 
     def __init__(self, window):
         self.window = window
+        self.lst = []
+        self.min_val = 0
+        self.max_val = 0
 
     def set_list(self):
+        if not self.lst:
+            raise Exception("Data class error: lst not defined")
+
         self.min_val = min(self.lst)
         self.max_val = max(self.lst)
+
         self.bar_width = round((ScreenProperties.WIDTH - ScreenProperties.SIDEPAD) / len(self.lst))
         self.bar_height = round((ScreenProperties.HEIGHT - ScreenProperties.TOPPAD) / (self.max_val - self.min_val))
         self.start_draw = ScreenProperties.SIDEPAD // 2
@@ -20,7 +27,7 @@ class Data:
             self.lst.append(val)
         self.set_list()
             
-    def draw_list(self):
+    def draw(self):
         
         for i, val in enumerate(self.lst):
 
