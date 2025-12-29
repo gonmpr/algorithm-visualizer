@@ -1,7 +1,7 @@
 class ScreenProperties:
     WIDTH = 1366
     HEIGHT = 768
-    SIDEPAD = WIDTH*0.1
+    SIDEPAD = WIDTH*0.1 
     TOPPAD = HEIGHT*0.2
 
 class Color:

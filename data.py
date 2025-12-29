@@ -26,16 +26,18 @@ class Data:
             val = random.randint(min_val, max_val)
             self.lst.append(val)
         self.set_list()
+
+    def order(self):
+        pass
             
     def draw(self):
         
         for i, val in enumerate(self.lst):
 
             x = self.start_draw + i * self.bar_width
-            y = ScreenProperties.HEIGHT - (val - self.min_val) * self.bar_height
+            y = ScreenProperties.HEIGHT - (val - self.min_val + 1 ) * self.bar_height
             width = self.bar_width
-            height = (val - self.min_val) * self.bar_height
-
+            height = (val - self.min_val + 1) * self.bar_height
             color = Color.BARCOLORS[i%3]
 
             pygame.draw.rect(self.window, color, (x, y, width, height))

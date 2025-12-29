@@ -11,9 +11,9 @@ def main():
 
     window = pygame.display.set_mode((ScreenProperties.WIDTH, ScreenProperties.HEIGHT))
     
-    boton_prueba = Button(window, 100, 100, 150, 50, 'hola')
+    boton_prueba = Button(window, 20, 20, 100, 40, 'hola')
     unordered_data = Data(window)
-    unordered_data.generate_list(100, 1, 50) #value, min_val, max_val
+    unordered_data.generate_list(15, 1, 20) #value, min_val, max_val
 
     
     while run:
@@ -21,6 +21,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button==1:
+                boton_prueba.last_clicked = True
 
 
         window.fill(Color.BACKGROUNDCOLOR)
