@@ -1,29 +1,34 @@
-import tkinter as tk
-from constants import WIDTH, HEIGHT 
-def main():
-    #ventana principal
-    root = tk.Tk()
-    root.title("Algorithm Visualizer")
-    root.config(bg="skyblue")
-    root.geometry(f"{WIDTH}x{HEIGHT}")
-
-    x1, y1 = 50, 50
-    x2, y2 = 250, 150
-
-    #contenedor de botones
-    frame = tk.Frame(root, width=WIDTH//1, height=HEIGHT//12)
-    frame.pack(padx=20,pady=5,side=tk.TOP)
-
-    # visualizador
-    canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT)
-    canvas.pack(padx=20,pady=20,side=tk.BOTTOM)
-
-    canvas.create_rectangle(200, 5, 10, 30, fill="blue", outline="black", width=1)
-
-
-    root.mainloop()
+import pygame
+from constants import Color, ScreenProperties
+from data import Data
     
+def main():
+    run = True
+    clock = pygame.time.Clock()
+    pygame.init()
 
+    window = pygame.display.set_mode((ScreenProperties.WIDTH, ScreenProperties.HEIGHT))
+    
+    unordered_data = Data(window)
+    unordered_data.generate_list(300, 1, 50) #value, min_val, max_val
+
+    
+    while run:
+
+        window.fill(Color.BACKGROUNDCOLOR)
+        unordered_data.draw_list()
+        pygame.display.update()
+
+
+
+
+
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+        
+        clock.tick(60)
 
 if __name__ == '__main__':
     main()
