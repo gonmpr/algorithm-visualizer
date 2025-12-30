@@ -3,7 +3,7 @@ from constants import Color
 
 
 class Button:
-    def __init__(self, window, pos_x, pos_y, width, height, text, func = None):
+    def __init__(self, window, pos_x, pos_y, width, height, text, func = lambda:None):
         self.window = window
         self.func = func
         self.clicked = False # TODO: implementar alternancia
@@ -34,7 +34,7 @@ class Button:
         return self.button.collidepoint(pygame.mouse.get_pos())
 
 
-    def call(self):
+    def call(self) :
         if self.mouse_on_button():
             if not self.func:
                 raise Exception("Button class Error: function must be setted before use")

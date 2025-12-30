@@ -8,8 +8,8 @@ class Data:
         self.lst = []
         self.min_val = 0
         self.max_val = 0
-        self.sort_gen = None  # Añadir esto
-        self.color_positions = {}  # Añadir esto
+        self.sort_generator = None 
+        self.color_positions = {}
 
     def set_list(self):
         if not self.lst:
@@ -33,34 +33,28 @@ class Data:
 
 
 
-    def order(self, algorithm_func):
-        if not self.sort_gen:
-            self.sort_gen = algorithm_func(self.lst.copy())
-            self.color_positions = {}
+    def order(self, func):
+        if not self.sort_generator:
+            self.sort_generator = func(self.lst.copy())
         
         try:
-            # Obtener siguiente paso
-            lst_state, idx1, idx2, action = next(self.sort_gen)
-            
-            # Actualizar lista
+            lst_state, index1, index2, action = next(self.sort_generator)
             self.lst = lst_state
             
-            # Guardar índices para colorear (VERDE y ROJO como en el ejemplo)
             self.color_positions = {}
-            if idx1 >= 0:
-                self.color_positions[idx1] = Color.GREEN  # Primera barra verde
-            if idx2 >= 0:
-                self.color_positions[idx2] = Color.RED  # Segunda barra roja
+            if index1 >= 0:
+                self.color_positions[index1] = Color.ESPECIALBARCOLOR[0]  
+            if index2 >= 0:
+                self.color_positions[index2] = Color.ESPECIALBARCOLOR[1] 
             
-            if action == "done":
-                self.sort_gen = None
-                self.color_positions = {}
+            if not action:
+                self.sort_generator = None
                 return False  
             
             return True
             
         except StopIteration:
-            self.sort_gen = None
+            self.sort_generator = None
             self.color_positions = {}
             return False
             
