@@ -38,6 +38,7 @@ class Data:
             self.sort_generator = func(self.lst.copy())
         
         try:
+             
             lst_state, index1, index2, action = next(self.sort_generator)
             self.lst = lst_state
             

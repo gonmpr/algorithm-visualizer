@@ -1,9 +1,8 @@
 import pygame
 from constants import Color
 
-
 class Button:
-    def __init__(self, window, pos_x, pos_y, width, height, text, func = lambda:None):
+    def __init__(self, window, width, height, pos_x, pos_y, text, func = lambda:None):
         self.window = window
         self.func = func
         self.clicked = False # TODO: implementar alternancia
@@ -24,7 +23,7 @@ class Button:
         pygame.draw.rect(self.window, self.color, self.button, border_radius=10)
         self.window.blit(self.text, self.text_pos) 
 
-        if self.clicked and not sorting:
+        if self.clicked:
             self.color = Color.RED
             return
 
