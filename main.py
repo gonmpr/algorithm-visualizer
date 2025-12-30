@@ -2,7 +2,7 @@ import pygame
 from constants import Color, ScreenProperties
 from data import Data
 from button import Button
-
+from bubble_sort import bubble_sort
     
 def main():
     run = True
@@ -11,23 +11,32 @@ def main():
 
     window = pygame.display.set_mode((ScreenProperties.WIDTH, ScreenProperties.HEIGHT))
     
-    boton_prueba = Button(window, 20, 20, 100, 40, 'hola')
     unordered_data = Data(window)
-    unordered_data.generate_list(15, 1, 20) #value, min_val, max_val
+    data_parameters = {'n':50, 'min_val':1, 'max_val':50} #n, min_val, max_val
+    unordered_data.generate_list(**data_parameters) 
 
-    
+    #buttons
+    randomize_button = Button(window, 20, 20, 100, 40, 'RESET', lambda: unordered_data.generate_list(**data_parameters))
+
+    sorting = False
     while run:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button==1:
-                boton_prueba.last_clicked = True
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button==1 and not sorting:
+                
+                randomize_button.call()
+                sorting = True
 
+
+        if sorting:
+            sorting = unordered_data.order(bubble_sort) 
+            pygame.time.wait(25)
 
         window.fill(Color.BACKGROUNDCOLOR)
         unordered_data.draw()
-        boton_prueba.draw()
+        randomize_button.draw(sorting)
         pygame.display.update()
         
         clock.tick(60)
