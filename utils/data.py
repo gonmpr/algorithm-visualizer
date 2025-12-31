@@ -78,11 +78,11 @@ class Data:
                 color = self.color_positions[i]
 
             font = pygame.font.SysFont('Terminus',width) 
-            text = font.render(str(val), True, Color.WHITE)
+            text = font.render(str(val), True, color)
 
 
             pygame.draw.rect(self.window, color, (x, y, width, height))
-            self.window.blit(text, (x + (width - text.get_width())/2, y+1)) 
+            self.window.blit(text, (x + (width - text.get_width())/2, y - width/1.5 )) 
 
 
 

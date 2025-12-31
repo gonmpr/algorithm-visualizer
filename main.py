@@ -1,9 +1,9 @@
 import pygame
-from constants import Color, ScreenProperties 
-from data import Data
-from button import Button
-from bubble_sort import bubble_sort
-from merge_sort import merge_sort
+from utils.constants import Color, ScreenProperties 
+from utils.data import Data
+from utils.button import Button
+from algorithms.bubble_sort import bubble_sort
+from algorithms.merge_sort import merge_sort
 
 
     
@@ -16,7 +16,7 @@ def main():
     screen = pygame.display.set_mode((ScreenProperties.WIDTH, ScreenProperties.HEIGHT))
     
     unordered_data = Data(screen)
-    data_parameters = {'n':30, 'min_val':1, 'max_val':30}
+    data_parameters = {'n':20, 'min_val':1, 'max_val':30}
     unordered_data.generate_list(**data_parameters) 
 
     #buttons
