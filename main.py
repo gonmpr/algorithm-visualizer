@@ -16,7 +16,7 @@ def main():
     screen = pygame.display.set_mode((ScreenProperties.WIDTH, ScreenProperties.HEIGHT))
     
     unordered_data = Data(screen)
-    data_parameters = {'n':20, 'min_val':1, 'max_val':15}
+    data_parameters = {'n':30, 'min_val':1, 'max_val':30}
     unordered_data.generate_list(**data_parameters) 
 
     #buttons
@@ -25,16 +25,24 @@ def main():
 
     bubble_sort_buttton = Button(screen, 200, 40, pad , ref_y, 'BUBBLE SORT',lambda: bubble_sort)
     merge_sort_button = Button(screen, 200, 40, 2*pad + 200, ref_y, 'MERGE SORT', lambda:merge_sort )
-
+    insertion_sort_button = Button(screen, 200, 40, 3*pad + 400, ref_y, 'INSERTION SORT', lambda:None)
+    quick_sort_button = Button(screen, 200, 40, 4*pad + 600, ref_y, 'QUICK SORT', lambda:None)
+    selection_sort_button = Button(screen, 200, 40, 5*pad + 800, ref_y, 'SELECTION SORT', lambda:None)
 
     reset_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 100 - pad , ref_y + 40 + pad, 
                               'RESET', lambda: unordered_data.generate_list(**data_parameters))
 
     run_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 100 - pad, ref_y, 'RUN')
 
+
     #groups
-    buttons_call = [bubble_sort_buttton, merge_sort_button]
-    buttons_draw = [reset_button,run_button, bubble_sort_buttton, merge_sort_button]
+    buttons_call = [bubble_sort_buttton, merge_sort_button, insertion_sort_button,
+                    quick_sort_button, selection_sort_button]
+
+    buttons_draw = [reset_button,run_button, bubble_sort_buttton, merge_sort_button,
+                    insertion_sort_button, quick_sort_button, selection_sort_button]
+
+
 
     last_button_clicked = None
     sorting_selected = None
@@ -67,7 +75,7 @@ def main():
         if sorting:
             last_button_clicked.clicked = True
             sorting = unordered_data.order(sorting_selected) 
-            pygame.time.wait(50)
+            pygame.time.wait(20)
 
         screen.fill(Color.BACKGROUNDCOLOR)
 

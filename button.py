@@ -18,16 +18,16 @@ class Button:
 
     def draw(self, sorting=False):
         if self.mouse_on_button() and not self.clicked and not sorting:
-            self.color = Color.GREY
+            self.color = Color.BUTTONCOLORS[1]
 
         pygame.draw.rect(self.window, self.color, self.button, border_radius=10)
         self.window.blit(self.text, self.text_pos) 
 
         if self.clicked:
-            self.color = Color.RED
+            self.color = Color.BUTTONCOLORS[1]
             return
 
-        self.color = Color.GREEN
+        self.color = Color.BUTTONCOLORS[0]
 
     def mouse_on_button(self):
         return self.button.collidepoint(pygame.mouse.get_pos())

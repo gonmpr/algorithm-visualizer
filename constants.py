@@ -10,7 +10,7 @@ class Color:
     GREEN = 0, 225, 0
     RED = 255, 0, 0
     GREY = 128, 128, 128
-    BACKGROUNDCOLOR = WHITE
+    BACKGROUNDCOLOR = (245,245,240)
     BARCOLORS = [
             (128, 128, 128),
             (160, 160, 160),
@@ -19,5 +19,8 @@ class Color:
     ESPECIALBARCOLOR = [
             (168, 50, 50),
             (50, 109, 168)
-                        ]
-
+                ]
+    BUTTONCOLORS = [
+            (227, 146, 66),
+            (227, 192, 66),
+                ]

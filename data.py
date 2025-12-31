@@ -19,7 +19,8 @@ class Data:
         self.max_val = max(self.lst)
 
         self.bar_width = round((ScreenProperties.WIDTH - ScreenProperties.SIDEPAD) / len(self.lst))
-        self.bar_height = round((ScreenProperties.HEIGHT - ScreenProperties.TOPPAD) / (self.max_val - self.min_val))
+        value_diference = self.max_val - self.min_val if  self.max_val - self.min_val > 0 else 1
+        self.bar_height = round((ScreenProperties.HEIGHT - ScreenProperties.TOPPAD) / value_diference)
         self.start_draw = ScreenProperties.SIDEPAD // 2
 
 
@@ -64,12 +65,29 @@ class Data:
         for i, val in enumerate(self.lst):
 
             x = self.start_draw + i * self.bar_width
-            y = ScreenProperties.HEIGHT - (val - self.min_val + 1 ) * self.bar_height
+            y = ScreenProperties.HEIGHT - (val - self.min_val) * self.bar_height
             width = self.bar_width
-            height = (val - self.min_val + 1) * self.bar_height
-            color = Color.BARCOLORS[i%3]
 
+            height = (val - self.min_val) * self.bar_height
+            if height == 0:
+                height = self.bar_height * 0.5  
+                y = ScreenProperties.HEIGHT - height
+
+            color = Color.BARCOLORS[i%3]
             if i in self.color_positions:
                 color = self.color_positions[i]
 
+            font = pygame.font.SysFont('Terminus',width) 
+            text = font.render(str(val), True, Color.WHITE)
+
+
             pygame.draw.rect(self.window, color, (x, y, width, height))
+            self.window.blit(text, (x + (width - text.get_width())/2, y+1)) 
+
+
+
+
+
+
+
+
