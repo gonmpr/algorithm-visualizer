@@ -1,6 +1,6 @@
 import pygame, random
-from constants import ScreenProperties, Color
-
+from utils.constants import ScreenProperties, Color
+from collections.abc import Iterable
 class Data:
 
     def __init__(self, window):
@@ -40,14 +40,23 @@ class Data:
         
         try:
              
-            lst_state, index1, index2, action = next(self.sort_generator)
+            lst_state, indexs, index2, action = next(self.sort_generator)
+            
             self.lst = lst_state
             
             self.color_positions = {}
-            if index1 >= 0:
-                self.color_positions[index1] = Color.ESPECIALBARCOLOR[0]  
+            if isinstance(indexs, Iterable):
+                c = 1
+                for i in indexs:
+                    if i >= 0:
+                        self.color_positions[i] = Color.ESPECIALBARCOLOR[c]  
+                        c = 0
+            else:
+                if indexs >= 0:
+                    self.color_positions[indexs] = Color.ESPECIALBARCOLOR[1]  
+
             if index2 >= 0:
-                self.color_positions[index2] = Color.ESPECIALBARCOLOR[1] 
+                self.color_positions[index2] = Color.ESPECIALBARCOLOR[2] 
             
             if not action:
                 self.sort_generator = None
