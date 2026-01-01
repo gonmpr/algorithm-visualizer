@@ -5,7 +5,7 @@ class Button:
     def __init__(self, window, width, height, pos_x, pos_y, text, func = lambda:None):
         self.window = window
         self.func = func
-        self.clicked = False # TODO: implementar alternancia
+        self.clicked = False 
         self.color = Color.GREEN
         self.button = pygame.Rect(pos_x, pos_y, width, height)
         
