@@ -20,7 +20,7 @@ class Button:
         if self.mouse_on_button() and not self.clicked and not sorting:
             self.color = Color.BUTTONCOLORS[1]
 
-        pygame.draw.rect(self.window, self.color, self.button, border_radius=10)
+        pygame.draw.rect(self.window, self.color, self.button, border_radius=6)
         self.window.blit(self.text, self.text_pos) 
 
         if self.clicked:
