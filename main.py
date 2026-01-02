@@ -6,6 +6,7 @@ from algorithms.bubble_sort import bubble_sort
 from algorithms.merge_sort import merge_sort
 from algorithms.insertion_sort import insertion_sort
 from algorithms.quick_sort import quick_sort
+from algorithms.selection_sort import selection_sort
 
     
 def main():
@@ -28,7 +29,7 @@ def main():
     bubble_sort_buttton = Button(screen, 200, 40, pad , ref_y, 
                                     'BUBBLE SORT',lambda: bubble_sort)
 
-    merge_sort_button = Button(screen, 200, 40, 2*pad + 200, ref_y,
+    merge_sort_button = Button(screen, 200, 40, 5*pad + 800, ref_y,
                                     'MERGE SORT', lambda:merge_sort )
 
     insertion_sort_button = Button(screen, 200, 40, 3*pad + 400, ref_y,
@@ -37,8 +38,8 @@ def main():
     quick_sort_button = Button(screen, 200, 40, 4*pad + 600, ref_y,
                                     'QUICK SORT', lambda:quick_sort)
 
-    selection_sort_button = Button(screen, 200, 40, 5*pad + 800, ref_y,
-                                    'SELECTION SORT', lambda:None)
+    selection_sort_button = Button(screen, 200, 40, 2*pad + 200, ref_y,
+                                    'SELECTION SORT', lambda:selection_sort)
 
 
     run_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 100 - pad, ref_y, 'RUN')

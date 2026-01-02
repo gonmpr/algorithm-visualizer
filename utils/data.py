@@ -39,12 +39,12 @@ class Data:
             self.sort_generator = func(self.lst.copy())
         
         try:
-             
+            self.color_positions = {} 
+
             lst_state, indexs, index2, action = next(self.sort_generator)
             
             self.lst = lst_state
             
-            self.color_positions = {}
             if isinstance(indexs, Iterable):
                 c = 1
                 for i in indexs:
@@ -66,9 +66,7 @@ class Data:
             
         except StopIteration:
             self.sort_generator = None
-            self.color_positions = {}
             return False
-            
     def draw(self):
         
         for i, val in enumerate(self.lst):
@@ -83,8 +81,10 @@ class Data:
                 y = ScreenProperties.HEIGHT - height
 
             color = Color.BARCOLORS[i%3]
+
             if i in self.color_positions:
                 color = self.color_positions[i]
+
 
             font = pygame.font.SysFont('Terminus',width) 
             text = font.render(str(val), True, color)
