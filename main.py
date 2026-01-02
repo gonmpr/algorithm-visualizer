@@ -1,5 +1,5 @@
 import pygame
-from utils.constants import Color, ScreenProperties 
+from utils.constants import Color, ScreenProperties, Value 
 from utils.data import Data
 from utils.button import Button
 from algorithms.bubble_sort import bubble_sort
@@ -8,6 +8,7 @@ from algorithms.insertion_sort import insertion_sort
 from algorithms.quick_sort import quick_sort
 from algorithms.selection_sort import selection_sort
 from algorithms.bogo_sort import bogo_sort
+
 
     
 def main():
@@ -21,7 +22,8 @@ def main():
                                       ScreenProperties.HEIGHT))
     
     unordered_data = Data(screen)
-    data_parameters = {'n':50, 'min_val':1, 'max_val':50}
+    
+    data_parameters = {'n':Value.SIZE, 'min_val':1, 'max_val':Value.SIZE}
     unordered_data.generate_list(**data_parameters) 
 
     #buttons

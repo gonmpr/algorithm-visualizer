@@ -1,3 +1,6 @@
+class Value:
+    SIZE = 50
+
 class ScreenProperties:
     WIDTH = 1366
     HEIGHT = 768
@@ -23,5 +26,5 @@ class Color:
                 ]
     BUTTONCOLORS = [
             (227, 146, 66),
-            (252, 123, 3)
+            (252, 78, 3)
                 ]
