@@ -14,6 +14,7 @@ def main():
     sorting = False
     clock = pygame.time.Clock()
     pygame.init()
+    font = pygame.font.SysFont('Terminus', 28) 
 
     screen = pygame.display.set_mode((ScreenProperties.WIDTH, 
                                       ScreenProperties.HEIGHT))
@@ -41,41 +42,45 @@ def main():
     selection_sort_button = Button(screen, 200, 40, 2*pad + 200, ref_y,
                                     'SELECTION SORT', lambda:selection_sort)
 
+    bogo_sort_button = Button(screen, 200, 40, pad, ref_y + 40 + pad, 'BOGO SORT', lambda:None)
+
+
 
     run_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 100 - pad, ref_y, 'RUN')
 
     reset_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 100 - pad , ref_y + 40 + pad, 
                               'RESET', lambda: unordered_data.generate_list(**data_parameters))
 
-
+    stop_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 100 - pad, ref_y + 80 + 2*pad, 'STOP')
 
     #groups
     buttons_call = [bubble_sort_buttton, merge_sort_button, insertion_sort_button,
-                    quick_sort_button, selection_sort_button]
+                    quick_sort_button, selection_sort_button, bogo_sort_button]
 
     buttons_draw = [reset_button,run_button, bubble_sort_buttton, merge_sort_button,
-                    insertion_sort_button, quick_sort_button, selection_sort_button]
+                    insertion_sort_button, quick_sort_button, selection_sort_button,
+                    bogo_sort_button]
 
 
-    steps = 0
-    font = pygame.font.SysFont('Terminus', 28) 
 
     last_button_clicked = None
     sorting_selected = None
+
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button==1 and sorting:
+                if stop_button.mouse_on_button():
+                    sorting = False
+                    unordered_data.stop()
             if event.type == pygame.MOUSEBUTTONDOWN and event.button==1 and not sorting:
                 
                 if run_button.mouse_on_button() and sorting_selected:
                     sorting = True 
-                    steps = 0
                 elif reset_button.mouse_on_button():
                     reset_button.call()
                     sorting = False
-                    steps = 0
 
 
                 for button in buttons_call:
@@ -88,21 +93,18 @@ def main():
                     if button != last_button_clicked:
                         button.clicked = False
 
-
         if sorting:
             last_button_clicked.clicked = True
             sorting = unordered_data.order(sorting_selected) 
-            steps += 1
 #           pygame.time.wait(20)
 
         screen.fill(Color.BACKGROUNDCOLOR)
 
         unordered_data.draw()
 
-        steps_text = font.render(f"STEPS: {str(steps)}", True, Color.BLACK)
-        screen.blit(steps_text,(ScreenProperties.WIDTH - pad - steps_text.get_width()-5,ref_y + 100)) 
         for button in buttons_draw:
             button.draw(sorting)
+        stop_button.draw(not sorting)
 
         pygame.display.update()
         clock.tick(60)

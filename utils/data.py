@@ -94,6 +94,9 @@ class Data:
             self.window.blit(text, (x + (width - text.get_width())/2, y - width/1.5 )) 
 
 
+    def stop(self):
+        self.sort_generator = None
+        self.color_positions = {}
 
 
 
