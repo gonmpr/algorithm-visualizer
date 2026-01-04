@@ -5,7 +5,7 @@ This is not intended to be a library, a product, or a polished demo.
 It’s a sandbox to understand how the algorithms work internally.
 
 
-https://github.com/user-attachments/assets/8d84ae34-0d8f-481b-ace8-9ad50543a4f0
+https://github.com/user-attachments/assets/0b3f86e2-0980-475a-bae8-685f663eccbb
 
 
 ## What it is
