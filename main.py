@@ -23,8 +23,7 @@ def main():
     
     unordered_data = Data(screen)
     
-    data_parameters = {'n':Value.SIZE, 'min_val':1, 'max_val':Value.SIZE}
-    unordered_data.generate_list(**data_parameters) 
+    unordered_data.generate_list(Value.SIZE, 1, Value.SIZE) 
 
     #buttons
     ref_y = ScreenProperties.HEIGHT / 70
@@ -45,24 +44,25 @@ def main():
     merge_sort_button = Button(screen, 200, 40, 5*pad + 800, ref_y,
                                'MERGE SORT', lambda:merge_sort )
 
-    bogo_sort_button = Button(screen, 200, 40, 6*pad + 1000, ref_y, 'BOGO SORT', lambda:bogo_sort)
+    bogo_sort_button = Button(screen, 200, 40, pad , ref_y + 40 + pad, 'BOGO SORT', lambda:bogo_sort)
 
 
 
-    run_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 100 - pad, ref_y, 'RUN')
+    run_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 200 - 2*pad, ref_y, 'RUN')
 
-    reset_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 100 - pad , ref_y + 40 + pad, 
-                              'RESET', lambda: unordered_data.generate_list(**data_parameters))
+    reset_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 100 - pad, ref_y + 40 + pad, 
+                              'RESET', lambda: unordered_data.generate_list(Value.SIZE, 1, Value.SIZE))
 
-    stop_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 100 - pad, ref_y + 80 + 2*pad, 'STOP')
+    stop_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 100 - pad , ref_y , 'STOP')
 
 
+    step_button = Button(screen, 100, 40, ScreenProperties.WIDTH - 200 - 2*pad, ref_y + 40 + pad, 'STEP')
 
     #groups
     buttons_call = [bubble_sort_buttton, merge_sort_button, insertion_sort_button,
                     quick_sort_button, selection_sort_button, bogo_sort_button]
 
-    buttons_draw = [reset_button,run_button, bubble_sort_buttton, merge_sort_button,
+    buttons_draw = [reset_button,run_button,step_button, bubble_sort_buttton, merge_sort_button,
                     insertion_sort_button, quick_sort_button, selection_sort_button,
                     bogo_sort_button]
 
@@ -83,13 +83,13 @@ def main():
                 
                 if run_button.mouse_on_button() and sorting_selected:
                     sorting = True 
-                elif reset_button.mouse_on_button():
+                if reset_button.mouse_on_button():
                     reset_button.call()
                     sorting = False
-
+                if step_button.mouse_on_button() and sorting_selected:
+                    unordered_data.order(sorting_selected) 
 
                 for button in buttons_call:
-
                     if button.mouse_on_button() and button.func is not None:
                         for btn in buttons_call:
                             btn.clicked = False
