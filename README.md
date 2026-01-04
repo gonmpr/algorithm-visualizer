@@ -58,7 +58,9 @@ Explore real-time visualization
 
 Experiment with generators and state management
 
-Not focus on perfonmance
+### Not a focus
+
+performance
 
 Extensible architecture
 
