@@ -7,7 +7,7 @@ It’s a sandbox to understand how the algorithms work internally.
 
 https://github.com/user-attachments/assets/0b3f86e2-0980-475a-bae8-685f663eccbb
 
-- The colors indicate the values ​​that are being compared or swaped
+- The colors indicate the values ​​that are being compared, swaped or being used as pivot
 
 ## What it is
 
