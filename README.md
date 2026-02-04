@@ -56,6 +56,13 @@ Understand algorithm flow step by step.
 Explore real-time visualization.
 Experiment with generators and state management.
 
+## How to use it
+install pygame, then clone the repo, and run in your terminal:
+```
+cd algorithm-visualizer/
+python3 main.py
+```
+
 ### Not a focus
 
 - performance
